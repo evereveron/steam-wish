@@ -1,1 +1,1 @@
-# steam-wish
+# Steam Wish List
