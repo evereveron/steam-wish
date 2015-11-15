@@ -4,6 +4,13 @@ var app = express();
 
 app.set('port', (process.env.PORT || 5000));
 
+var connection = mysql.createConnection({
+	host	: 'steamgame.c7tcssw8uobt.us-east-1.rds.amazonaws.com',
+	user	: 'SteamGame', 
+	password: 'steamgame',
+	port 	: '3306'
+});
+
 app.use(express.static(__dirname + '/public'));
 
 // views is directory for all template files
