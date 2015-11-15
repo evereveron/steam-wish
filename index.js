@@ -1,5 +1,3 @@
-global.jQuery = require('jquery');
-var bootstrap = require('bootstrap');
 var express = require('express');
 var app = express();
 
