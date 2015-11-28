@@ -31,18 +31,20 @@
     <![endif]-->
     
   <% include ../partials/header.ejs %>
-  
   </head>
 
   <body>
-
     <div class="container">
-
       <form class="form-signin">
         <h2 class="form-signin-heading">Enter Steam Profile URL</h2>
         <label for="inputURL" class="sr-only">Steam Profile Link</label>
-        <input type="button" id="inputURL" class="form-control" placeholder="URL" required autofocus>
+
+        <form method="POST" action="/">
+          <input type="text" name ="urlName" id="inputURL" class="form-control" placeholder="Enter Steam Profile URL" required autofocus>
           <button class="btn btn-lg btn-primary btn-block" type="button" onclick="document.location.href='index'">Sign in</button>
+        </form>
+
+
       </form>
 
     </div> <!-- /container -->
