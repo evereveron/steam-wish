@@ -10,8 +10,6 @@ var request = require('request'),
 
 //global variable that should hold user wishlist
 var wishlistURL;
-//var appidList = [];
-GLOBAL._appidList = new Array();
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -72,28 +70,28 @@ app.listen(app.get('port'), function() {
 
 wishlistURL = 'http://steamcommunity.com/id/T1War/wishlist/';
 /*gets the user wishlist url and parses the user's wishlist for the game's appID*/
-var appid;
+
 request(wishlistURL, function(err, resp, body){
 	//console.log(appidList);
-
+	var appid;
+	//var appidList = [];
 	if(!err && resp.statusCode == 200){
 		var $ = cheerio.load(body);
 		$('div.wishlistRow').each(function(){
 			appid = $(this).attr('id');
 			appid = appid.replace("game_", "");
-			//global._appidList.push(appid);
 
-			connection.connect();
 			connection.query('INSERT INTO SteamGame.userWishlistTemp SET AppID=?', appid ,function(err, result){
 				if(err) throw err;
 				console.log('result:', result);
 			});
-			connection.end();
+
 		}); /*end of each function*/
-		//prints wishlist
-		//console.log(global._appidList);
 
-
+		connection.query('SELECT * FROM SteamGame.SteamStore INNER JOIN SteamGame.userWishlistTemp ON SteamStore.AppID = userWishlistTemp.AppId)', appid ,function(err, result){
+			if(err) throw err;
+			console.log('result:', result);
+		});
 	}
 });
 
