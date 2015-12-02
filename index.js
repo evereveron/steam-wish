@@ -34,11 +34,6 @@ app.get('/', function(request, response) {
 
 });
 
-//routes to the main dashboard page
-app.get('/index', function (request, response) {
-	 response.render('pages/index');
-});
-
 //wildcard (if nothing matches)
 app.get('*', function (req, res) {
 	res.send('Bad Route: URL does not exist');
@@ -59,6 +54,14 @@ app.listen(app.get('port'), function() {
 wishlistURL = 'http://steamcommunity.com/id/T1War/wishlist/';
 /*gets the user wishlist url and parses the user's wishlist for the game's appID*/
 
+app.get('/index', function (request, response) {
+	connection.query('SELECT * FROM SteamGame.wishlistdata',function(err, result){
+		if(err) throw err;
+		console.log('result:', result);
+		response.render('pages/index', {result:result});
+	});
+});
+
 request(wishlistURL, function(err, resp, body){
 	//console.log(appidList);
 	var appid;
@@ -76,36 +79,10 @@ request(wishlistURL, function(err, resp, body){
 
 		}); /*end of each function*/
 
-		connection.query('SELECT * FROM SteamGame.SteamStore INNER JOIN SteamGame.userWishlistTemp ON SteamStore.AppID = userWishlistTemp.AppId)', appid ,function(err, result){
-			if(err) throw err;
-			console.log('result:', result);
-		});
+
 	}
 });
 
-
-//console.log(global._appidList);
-
-/*
-connection.query('INSERT INTO SteamGame.userWishlistTemp SET AppID=?', String(appidList[0]) ,function(err, result, fields){
-	if(err) throw err;
-	console.log('result:', result);
-});
-*/
-
-/*
-var query = connection.query('SELECT * FROM SteamGame.SteamStore', function(err, result, appidList){
-	if(err) throw err;
-	//console.log('result:', result);
-});
-*/
-
-/*
-var q = squel.insert();
-squel.insert().into("SteamGame.userWishlistTemp").set("AppID", "test").toString();
-var test = squel.select().from("SteamGame.userWishlistTemp");
-console.log(test);
-*/
 
 
 

@@ -85,14 +85,17 @@
                   <th>Percent Off</th>
                 </tr>
               </thead>
-
-                <tr>
-                  <td>1,015</td>
-                  <td><%= appdata[0] %></td>
+                <!-- CONTAINS THE TABLE ROWS-->
+              <% result.forEach(function(result) {%>
+                  <tr>
+                  <td><%= result.AppId %></td>
+                  <td></td>
                   <td>ligula</td>
                   <td>in</td>
                   <td>libero</td>
-                </tr>
+                  </tr>
+              <% }); %>
+
               </tbody>
             </table>
           </div>
