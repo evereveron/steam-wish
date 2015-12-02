@@ -17,7 +17,19 @@ var connection = mysql.createConnection({
 	host	: 'steamgame.c7tcssw8uobt.us-east-1.rds.amazonaws.com',
 	user	: 'SteamGame',
 	password: 'steamgame',
-	port 	: '3306'
+	port 	: '3306',
+	database: 'SteamGame'
+});
+
+connection.connect();
+
+connection.query('SELECT * from tags', function(err, rows, fields) {
+	if(!err)
+		console.log(rows);
+	else{
+		console.log('Error while performing query');
+		throw err;
+	}
 });
 
 app.use(express.static(__dirname + '/public'));
