@@ -78,8 +78,8 @@
             <table class="table table-striped">
               <thead>
                 <tr>
-                  <th>Cover Art</th>
                   <th>AppId</th>
+				  <th>Game Name</th>
                   <th>Original Price</th>
                   <th>Sale Price</th>
                   <th>Percent Off</th>
@@ -89,10 +89,10 @@
               <% result.forEach(function(result) {%>
                   <tr>
                   <td><%= result.AppId %></td>
-                  <td></td>
-                  <td>ligula</td>
-                  <td>in</td>
-                  <td>libero</td>
+				  <td><%= result.GameName %></td>
+                  <td><%= result.OriginalPrice %></td>
+                  <td><%= result.SalePrice %></td>
+                  <td><%= result.Discount %></td>
                   </tr>
               <% }); %>
 

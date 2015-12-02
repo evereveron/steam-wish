@@ -47,11 +47,12 @@ app.get('/', function(request, response) {
 });
 
 //wildcard (if nothing matches)
+/*
 app.get('*', function (req, res) {
 	res.send('Bad Route: URL does not exist');
 
 });
-
+*/
 app.listen(app.get('port'), function() {
 	console.log('Node app is running on port', app.get('port'));
 });
@@ -68,8 +69,6 @@ wishlistURL = 'http://steamcommunity.com/id/T1War/wishlist/';
 
 app.get('/index', function (request, response) {
 	connection.query('SELECT * FROM SteamGame.wishlistdata',function(err, result){
-		if(err) throw err;
-		console.log('result:', result);
 		response.render('pages/index', {result:result});
 	});
 });
