@@ -48,19 +48,11 @@ app.get('/', function(request, response) {
 
 //wildcard (if nothing matches)
 /*
-<<<<<<< HEAD
  app.get('*', function (req, res) {
  res.send('Bad Route: URL does not exist');
 
  });
  */
-=======
-app.get('*', function (req, res) {
-	res.send('Bad Route: URL does not exist');
-
-});
-*/
->>>>>>> b037e7beff1cb4d798ca0c87a755688797dbea26
 app.listen(app.get('port'), function() {
 	console.log('Node app is running on port', app.get('port'));
 });
