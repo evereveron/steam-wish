@@ -108,7 +108,7 @@ request(wishlistURL, function(err, resp, body){
 	//console.log(appidList);
 	var appid;
 	//var appidList = [];
-	global.insertQ = 'INSERT INTO SteamGame.userWishlistTemp VALUES ';
+	global.insertQ = 'INSERT IGNORE INTO SteamGame.userWishlistTemp VALUES ' || console.log(err);
 
 	if(!err && resp.statusCode == 200){
 		var $ = cheerio.load(body);
