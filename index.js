@@ -10,7 +10,7 @@ var request = require('request'),
 
 //global variable that should hold user wishlist
 var wishlistURL;
-
+global.url;
 app.set('port', (process.env.PORT || 5000));
 
 var connection = mysql.createConnection({
@@ -73,59 +73,62 @@ global.pageCount;
 global.totalGames;
 global.currentPage;
 app.get('/index', function (request, response) {
-	
+
 	global.pageSize = 100;
 	console.log("total games: " + global.totalGames);
 	global.pageCount = global.totalGames/global.pageSize;
-	
+
 	console.log("Page count: " + global.pageCount);
 	global.currentPage = 1;
 	var gameArray = [];
 	if (typeof request.query.page !== 'undefined') {
-        global.currentPage = +request.query.page;
-    }
+		global.currentPage = +request.query.page;
+	}
 	connection.query('SELECT * FROM SteamGame.wishlistdata',function(err, result){
 		response.render('pages/index', {
 			result: result,
 			pageSize: pageSize,
 			pageCount: pageCount,
 			currentPage: currentPage
-			});
+		});
 	});
-	
+}); /*end of app.get '/' */
+var url;
+app.post('/', function (request, response) {
+	global.url = request.body.urlName || "http://steamcommunity.com/id/T1War/wishlist/";
+});
 
-});
 /*
-app.get('/index/:page', function (request, response) {
-	
-});
-*/
+ app.get('/index/:page', function (request, response) {
+
+ });
+ */
 global.insertQ;
 request(wishlistURL, function(err, resp, body){
 	//console.log(appidList);
 	var appid;
 	//var appidList = [];
 	global.insertQ = 'INSERT INTO SteamGame.userWishlistTemp VALUES ';
-	
+
 	if(!err && resp.statusCode == 200){
 		var $ = cheerio.load(body);
 		$('div.wishlistRow').each(function(){
 			appid = $(this).attr('id');
 			appid = appid.replace("game_", "");
 			global.insertQ = global.insertQ + '(' + appid + '),';
-			
+
 		}); /*end of each function*/
 		global.insertQ = global.insertQ.slice(0,-1);
-		
+
 		//console.log(global.insertQ);
-		
+
 		connection.query(global.insertQ ,function(err, result){
 			if(err) throw err;
 			//console.log('result:', result);
 		});
-		
+
 	}
-	
+
 	connection.query('SELECT COUNT(*) as total FROM SteamGame.wishlistdata', function(err, count){
 		global.totalGames = count[0].total;
 		console.log("count: " + count[0].total);
