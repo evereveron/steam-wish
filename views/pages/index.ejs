@@ -16,11 +16,23 @@
   <link rel="stylesheet" type="text/css" href="/stylesheets/main.css" />
   <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
   <link rel="icon" href="/img/favicon.ico" type="image/x-icon">
-
-</head>
 <script>
-
+	var defaultSort = 'ASC'; //or desc
+	var current;
+	var rawURL = "http:localhost:5000/index"
+	function sort(order){
+	if(window.location.href.indexOf('ASC') > -1 && window.location.href.indexOf(order) > -1){
+		current = 'DESC';
+		}else if(window.location.href.indexOf('DESC') > -1 && window.location.href.indexOf(order) > -1){
+		current = 'ASC';
+		}else{
+		current = 'ASC';
+		}
+		window.location.href = window.location.href.split('/index')[0] + '/index/' + order + '_' + current;
+	}
 </script>
+</head>
+
 <body>
 <div class="container-fluid my-container">
   <div class="bg"></div>
@@ -61,18 +73,18 @@
       <div class="table-responsive wish-table">
         <table class="table table-striped">
           <thead>
-          <tr>
-            <th>AppId</th>
-            <th>Game Name</th>
-            <th>Original Price</th>
-            <th>Sale Price</th>
-            <th>Percent Off</th>
-          </tr>
-          </thead>
-          <!-- CONTAINS THE TABLE ROWS-->
-          <% result.forEach(function(result) {%>
-          <tr>
-            <td><%= result.AppId %></td>
+		<tr>
+            <th onclick="sort('AppId')">AppId</th>
+            <th onclick="sort('GameName')">Game Name</th>
+            <th onclick="sort('OriginalPrice')">Original Price</th>
+            <th onclick="sort('SalePrice')">Sale Price</th>
+            <th onclick="sort('Discount')">Percent Off</th>
+		</tr>
+		</thead>
+		<!-- CONTAINS THE TABLE ROWS-->
+		<% result.forEach(function(result) {%>
+		<tr>
+			<td><%= result.AppId %></td>
             <td><%= result.GameName %></td>
             <td><%= result.OriginalPrice %></td>
             <td><%= result.SalePrice %></td>

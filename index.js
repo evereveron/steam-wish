@@ -93,6 +93,19 @@ app.get('/index', function (request, response) {
 		});
 	});
 }); /*end of app.get '/' */
+
+app.get('/index/:orderby', function(request, response){
+	var sortby = request.params.orderby;
+	var sort = sortby.split('_');
+	console.log(sortby + ": " + sort[0] + " and " + sort[1]);
+	var querySort = 'SELECT * FROM SteamGame.wishlistdata ORDER BY ' + sort[0] + ' ' + sort[1];
+	console.log(querySort);
+	connection.query(querySort ,function(err, result){
+		if(err) throw err;
+		response.render('pages/index', {result: result});
+	});
+});
+
 var url;
 app.post('/', function (request, response) {
 	global.url = request.body.urlName || "http://steamcommunity.com/id/T1War/wishlist/";
