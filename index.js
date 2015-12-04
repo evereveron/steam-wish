@@ -1,4 +1,4 @@
-var $ = require('jquery')(require("jsdom").jsdom().defaultView);
+var $ = require('jquery');
 var http = require('http');
 var express = require('express');
 var squel = require("squel");
