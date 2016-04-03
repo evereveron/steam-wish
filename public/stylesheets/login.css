@@ -1,17 +1,76 @@
 @import url(http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
+@import url(https://fonts.googleapis.com/css?family=Raleway:500,800);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:700);
+
 body {
   /*background: url('http://blogs-images.forbes.com/erikkain/files/2014/10/daI-cover.jpg') fixed;*/
   /*background: url('https://wallpaperscraft.com/image/visage_dota_2_art_95155_1920x1080.jpg') fixed; */
-  background: url('http://i.imgur.com/pLT8xz2.jpg') fixed;
+  /*background: url('http://i.imgur.com/pLT8xz2.jpg') fixed; */
+  
   background-size: cover;
   padding: 0;
   margin: 0;
 }
 
+#bg {
+  position: fixed;
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: .9;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+
+.one {
+  background: url('/img/fallout.jpg') fixed; /*fallout */
+}
+
+.two {
+  background: url('/img/rainbow6.jpg') fixed;
+}
+
+.three {
+  background: url('/img/assassinscreed.jpg') fixed;
+}
+
+.four {
+  background: url('/img/portal.jpg') fixed; /*portal*/
+}
+
+.five {
+  background: url('/img/transistor.jpg') fixed; /*transistor*/
+}
+
+.six {
+  background: url('/img/bioshock.jpg') fixed;
+}
+
+.seven {
+  background: url('/img/mirrorsedge.jpg') fixed;
+}
+
+.eight {
+  background: url('/img/farcry.jpg') fixed;
+}
+
 .login {
     background-color: rgba(0, 0, 0, 0.66);
     padding: 20px;
-    margin-top: 20%;
+    margin-top: 15%;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#login-btn {
+  margin-left: 17px;
+  margin-top: 10px;
+}
+
+#wish-logo {
+  padding-left: 14px;
 }
 
 .wrap {
@@ -26,11 +85,10 @@ body {
 }
 
 p.form-title {
-  font-family: 'Open Sans' , sans-serif;
-  font-size: 20px;
-  font-weight: 600;
+  font-size: 18px;
+  font-weight: 450;
   text-align: center;
-  color: #FFFFFF;
+  color: #DEDBDB;
   margin-top: 5%;
   text-transform: uppercase;
   letter-spacing: 4px;
@@ -110,65 +168,4 @@ form.login a:hover {
   display: none;
 }
 
-.show-pass-reset {
-  display: block !important;
-}
 
-.pass-reset {
-  margin: 0 auto;
-  width: 250px;
-  position: relative;
-  margin-top: 22%;
-  z-index: 999;
-  background: #FFFFFF;
-  padding: 20px 15px;
-}
-
-.pass-reset label {
-  font-size: 12px;
-  font-weight: 400;
-  margin-bottom: 15px;
-}
-
-.pass-reset input[type="email"] {
-  width: 100%;
-  margin: 5px 0 0 0;
-  padding: 5px 10px;
-  background: 0;
-  border: 0;
-  border-bottom: 1px solid #000000;
-  outline: 0;
-  font-style: italic;
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 1px;
-  margin-bottom: 5px;
-  color: #000000;
-  outline: 0;
-}
-
-.pass-reset input[type="submit"] {
-  width: 100%;
-  border: 0;
-  font-size: 14px;
-  text-transform: uppercase;
-  font-weight: 500;
-  margin-top: 10px;
-  outline: 0;
-  cursor: pointer;
-  letter-spacing: 1px;
-}
-
-.pass-reset input[type="submit"]:hover {
-  transition: background-color 0.5s ease;
-}
-
-.posted-by {
-  position: absolute;
-  bottom: 26px;
-  margin: 0 auto;
-  color: #FFF;
-  background-color: rgba(0, 0, 0, 0.66);
-  padding: 10px;
-  left: 45%;
-}
